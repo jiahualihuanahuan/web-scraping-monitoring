@@ -1,2 +1,2 @@
 # web-scraping
-using beautifulsoup library to web scrape tables of data in python
+using BeautifulSoup library to web scrape tables of data in python
