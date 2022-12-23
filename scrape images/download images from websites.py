@@ -1,8 +1,13 @@
+# this code will download all images from a website/category
+# it will iterate through all the pages
+# it will get the link of children pages
+# it will go to those children pages and scrape all images
+
 import requests
 from bs4 import BeautifulSoup
 
-for id in range(523):
-    response = requests.get(f'http://www.domain.net/bbs/forum-252-{id}.html')
+for id in range(523): # specify number of pages you wan to scrape
+    response = requests.get(f'http://www.sexinsex.net/bbs/forum-252-{id}.html') # change 252 to other numbers to change the categories of images you want to download
     print(f"we are at page {id}")
     # Parse the HTML content of the page
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -13,7 +18,7 @@ for id in range(523):
     for tag in tags:
         tag.find_all('a')
         link = tag.find('span').find('a')['href']
-        response = requests.get(f'http://www.domain.net/bbs/{link}')
+        response = requests.get(f'http://www.sexinsex.net/bbs/{link}')
 
         # Parse the HTML content of the page
         soup = BeautifulSoup(response.content, 'html.parser')
