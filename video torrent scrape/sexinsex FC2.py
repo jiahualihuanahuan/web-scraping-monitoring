@@ -17,7 +17,7 @@ for id in range(1,500):
     response = requests.get(f'http://www.sexinsex.net/bbs/forum-143-{id}.html', headers = headers)
     print(response)
     soup = BeautifulSoup(response.content, 'html.parser')
-    for tipe in ["new", "lock"]:
+    for tipe in ["new","common","lock"]:
         ths = soup.find_all('th', class_=tipe)
 
         for th in ths:
@@ -26,7 +26,7 @@ for id in range(1,500):
             try:
                 title = th.find_all('a')[1].string
                 print(title)
-                if  title.__contains__("fc2") or title.__contains__("FC2") or title.__contains__("FHD"):
+                if  title.__contains__("fc2") or title.__contains__("FC2"):
                     link_response = requests.get(f'http://www.sexinsex.net/bbs/{link}', headers = headers)
                     link_soup = BeautifulSoup(link_response.content, 'html.parser')
 
@@ -35,7 +35,7 @@ for id in range(1,500):
                     response = requests.get(f'http://www.sexinsex.net/bbs/{attachment}', headers = headers)
                     open(f"D:/Media/torrent/{attachment_name}", 'wb').write(response.content)
 
-                    torrent_file = TorrentDownloader(f"D:/Media/torrent/{attachment_name}", f'D:/Media/japan/')
+                    torrent_file = TorrentDownloader(f"D:/Media/torrent/{attachment_name}", f'D:/Media/nosql/fc2/')
                     torrent_file.start_download()   
                 else:
                     pass
