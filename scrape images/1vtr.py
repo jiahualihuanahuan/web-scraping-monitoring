@@ -1,6 +1,12 @@
 # website url layout
 # https://www.1vtr.com/{page_id}.html/{subpage_id}
 
+import requests
+from bs4 import BeautifulSoup
+import os
+import time
+import hashlib
+
 content_hashes = []
 
 for page_id in range(1, 130001):
