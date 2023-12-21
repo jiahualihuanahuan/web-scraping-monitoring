@@ -59,16 +59,32 @@ def getPriceCC(url):
                     product_detail = product_detail + td.string + " " 
                 except:
                     print("no product detail available")
-        c.execute("""INSERT INTO cc_special VALUES(?,?,?)""", (product_name, price, product_detail))
+        c.execute("""INSERT INTO cc_products VALUES(?,?,?)""", (product_name, price, product_detail))
         conn.commit()
 
 base_url = "https://www.canadacomputers.com/specials.php?cat="
 conn = sqlite3.connect('pc_parts.db')
 c = conn.cursor()
 
-c.execute("""CREATE TABLE cc_special(product_name TEXT, price TEXT, product_details TEXT)""")
+c.execute("""CREATE TABLE cc_products(product_name TEXT, price TEXT, product_details TEXT)""")
 
 categories = ["CPU","Desktop+PCs","Hard+Drives%2FSolid+State+Drives","Memory","LCD%2FLED+Monitors","Motherboards","Power+Supplies"]
+
+for cat in categories:
+    url = base_url + cat
+    getPriceCC(url)
+
+conn.close()
+
+# https://www.canadacomputers.com/index.php?cPath=4_65
+    
+base_url = "https://www.canadacomputers.com/index.php?cPath="
+conn = sqlite3.connect('pc_parts.db')
+c = conn.cursor()
+
+c.execute("""CREATE TABLE cc_products(product_name TEXT, price TEXT, product_details TEXT)""")
+
+categories = ["4_65","4_64","26_1832","26_1842","24_311","43_557_558","43_557_559", "43_557_5769","179_4229", "15_4232", "6_6004", "33_1938"]
 
 for cat in categories:
     url = base_url + cat
