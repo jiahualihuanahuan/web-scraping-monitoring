@@ -34,7 +34,7 @@ def get_user_agents():
         user_agents.extend(get_user_agent_strings_for_this_browser(browser))
     return user_agents[3:] # Remove the first 3 Google Header texts from Chrome's user agents
 
-def getSpecialPriceCC(url):
+def getPriceCC(url):
     random_user_agent = random.choice(get_user_agents())
     header={'User-Agent':random_user_agent}
     r = requests.get(url, headers=header)
@@ -72,6 +72,6 @@ categories = ["CPU","Desktop+PCs","Hard+Drives%2FSolid+State+Drives","Memory","L
 
 for cat in categories:
     url = base_url + cat
-    getSpecialPriceCC(url)
+    getPriceCC(url)
 
 conn.close()
